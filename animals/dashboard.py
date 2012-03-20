@@ -20,7 +20,7 @@ import horizon
 
 
 class AnimalsPlugin(horizon.Dashboard):
-    name = _("Animals Plugin")
+    name = _("Animals")
     slug = "animals"
     panels = ('cats',)
     default_panel = 'cats'
