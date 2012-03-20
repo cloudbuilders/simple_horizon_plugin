@@ -16,13 +16,45 @@
 
 import logging
 
+from django.views import generic
+from horizon import api
 from horizon import forms
+from horizon import tables
+
+
 from animals.cats.forms import CatForm
+from .tables import CatsTable
 
 
 LOG = logging.getLogger(__name__)
 
 
-class IndexView(forms.ModalFormView):
-    form_class = CatForm
+class IndexView(tables.DataTableView):
+    table_class = CatsTable
     template_name = 'animals/cats/index.html'
+
+    def get_data(self):
+        # Gather our cats
+        try:
+            cats = api.novaclient(self.request).cats.list()
+        except novaclient_exceptions.ClientException, e:
+            cats = []
+            LOG.exception("ClientException in cats index")
+            messages.error(self.request, _('Unable to fetch cats: %s') % e)
+        return cats
+
+
+class DetailView(generic.TemplateView):
+    form_class = CatForm
+    template_name = 'animals/cats/detail.html'
+
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        context = super(DetailView, self).get_context_data(**kwargs)
+        # Add in a QuerySet of all the books
+        context['cat'] = {'thumb': ('http://maxcdn.liewcf.com/blog/wp-content'
+                                    '/uploads/mini-dog-pic11236.jpg'),
+                          'id': 3,
+                          'type': 'cute',
+                          'url': 'http://www.liewcf.com/cute-mini-dog-1009/'}
+        return context

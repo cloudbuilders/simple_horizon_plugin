@@ -7,5 +7,6 @@
 {% endblock page_header %}
 
 {% block settings_main %}
-  {{ table.render }}
+    <h2>Behold! It's a <b>{{cat.type}}</b> cat!</b></h2>
+    <a href="{{cat.url}}"> <img src="{{ cat.thumb }}"/></a>
 {% endblock %}

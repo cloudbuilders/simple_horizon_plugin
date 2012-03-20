@@ -14,15 +14,25 @@
 #    License for the specific language governing permissions and limitations
 #    under the License.
 
-from django.conf.urls.defaults import patterns, url
+from django.utils.translation import ugettext as _
 
-from .views import IndexView, DetailView
-
-
-CATS = r'^cats/(?P<cat_id>[^/]+)/%s$'
+from horizon import api
+from horizon import tables
 
 
-urlpatterns = patterns('animals.cats.views',
-    url(r'^$', IndexView.as_view(), name='index'),
-    url(CATS % 'detail', DetailView.as_view(), name='detail'),
-)
+class ViewCat(tables.LinkAction):
+    name = "view"
+    verbose_name = _("View")
+    url = "horizon:animals:cats:show"
+    classes = ("btn-edit",)
+
+
+class CatsTable(tables.DataTable):
+    id = tables.Column('id', verbose_name=_('ID'))
+    thumb = tables.Column('thumb', verbose_name=_('Thumb'))
+    url = tables.Column('url', verbose_name=_('Url'))
+
+    class Meta:
+        name = "cats"
+        verbose_name = _("Cats")
+        row_actions = (ViewCat,)
