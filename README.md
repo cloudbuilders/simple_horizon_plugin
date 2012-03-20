@@ -5,7 +5,7 @@ the Openstack Horizon Dashboard.
 
 Devstack Installation
 =====================
-To enable this plugin in your environment::
+To enable this plugin in your environment:
 
     git clone https://github.com/cloudbuilders/simple_horizon_plugin
     cd simple_horizon_plugin
@@ -14,10 +14,10 @@ To enable this plugin in your environment::
 This will add the appropriate paths to your system so that horizon
 can find your plugin.
 
-local_setting.py Modifications
-==============================
+Local Settings Modifications
+============================
 Now, configure your plugin by including the following in
-horizon/openstack_dashboard/local/local_settings.py::
+horizon/openstack_dashboard/local/local_settings.py:
 
     HORIZON_CONFIG = {
         'dashboards': ('nova', 'animals', 'syspanel', 'settings',),
@@ -38,7 +38,7 @@ horizon/openstack_dashboard/local/local_settings.py::
         'animals',
     )
 
-Now, restart your web server.  If you are using devstack::
+Now, restart your web server.  If you are using devstack:
 
     sudo /etc/init.d/apache2 restart
 
@@ -46,5 +46,6 @@ Now, restart your web server.  If you are using devstack::
 Using the Plugin
 ================
 You should now be able to view the simple plugin in your dashboard
-at the url: http://myhost/animals/
+at the url:
 
+    http://myhost/animals/
