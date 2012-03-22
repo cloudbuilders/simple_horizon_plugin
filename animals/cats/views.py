@@ -22,7 +22,6 @@ from horizon import forms
 from horizon import tables
 
 
-from animals.cats.forms import CatForm
 from .tables import CatsTable
 
 
@@ -45,7 +44,6 @@ class IndexView(tables.DataTableView):
 
 
 class DetailView(generic.TemplateView):
-    form_class = CatForm
     template_name = 'animals/cats/detail.html'
 
     def get_context_data(self, **kwargs):

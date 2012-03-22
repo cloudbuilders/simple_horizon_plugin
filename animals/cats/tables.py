@@ -23,7 +23,7 @@ from horizon import tables
 class ViewCat(tables.LinkAction):
     name = "view"
     verbose_name = _("View")
-    url = "horizon:animals:cats:show"
+    url = "horizon:animals:cats:detail"
     classes = ("btn-edit",)
 
 
