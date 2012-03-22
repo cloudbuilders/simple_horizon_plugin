@@ -16,7 +16,9 @@
 
 from django.conf.urls.defaults import patterns, url
 
+from .forms import ContactForm1, ContactForm2
 from .views import IndexView, DetailView
+from .views import ContactWizard
 
 
 CATS = r'^cats/(?P<cat_id>[^/]+)/%s$'
@@ -25,4 +27,6 @@ CATS = r'^cats/(?P<cat_id>[^/]+)/%s$'
 urlpatterns = patterns('animals.cats.views',
     url(r'^$', IndexView.as_view(), name='index'),
     url(CATS % 'detail', DetailView.as_view(), name='detail'),
+    url(r'^cats/wizard/$', ContactWizard([ContactForm1, ContactForm2])),
 )
+

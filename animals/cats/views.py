@@ -16,13 +16,14 @@
 
 import logging
 
+from django.contrib.formtools.wizard import FormWizard
+from django.http import HttpResponseRedirect
 from django.views import generic
 from horizon import api
 from horizon import forms
 from horizon import tables
 
 
-from animals.cats.forms import CatForm
 from .tables import CatsTable
 
 
@@ -45,7 +46,6 @@ class IndexView(tables.DataTableView):
 
 
 class DetailView(generic.TemplateView):
-    form_class = CatForm
     template_name = 'animals/cats/detail.html'
 
     def get_context_data(self, **kwargs):
@@ -58,3 +58,13 @@ class DetailView(generic.TemplateView):
                           'type': 'cute',
                           'url': 'http://www.liewcf.com/cute-mini-dog-1009/'}
         return context
+
+
+class ContactWizard(FormWizard):
+    def get_template(self, step):
+        # use "step" if you want to use specific templates for certain steps
+        return 'animals/cats/wizard.html'
+
+    def done(self, request, form_list):
+        # form list is a list of form objects.
+        return HttpResponseRedirect('/cats')
