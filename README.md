@@ -8,6 +8,7 @@ Devstack Installation
 To enable this plugin in your environment:
 
     git clone https://github.com/cloudbuilders/simple_horizon_plugin
+
     cd simple_horizon_plugin
     sudo python setup.py develop
 
@@ -17,7 +18,7 @@ can find your plugin.
 Local Settings Modifications
 ============================
 Now, configure your plugin by including the following in
-horizon/openstack_dashboard/local/local_settings.py:
+/opt/stack/horizon/openstack_dashboard/local/local_settings.py:
 
     HORIZON_CONFIG = {
         'dashboards': ('nova', 'animals', 'syspanel', 'settings',),
