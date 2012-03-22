@@ -3,6 +3,10 @@ Overview
 This is a simple Horizon plugin to demonstrate how to extend
 the Openstack Horizon Dashboard.
 
+It relies on https://github.com/cloudbuilders/simple_nova_extension
+to display cats.  However, if you are just trying to get some framework
+code this may still be useful.
+
 Devstack Installation
 =====================
 To enable this plugin in your environment:
