@@ -16,7 +16,6 @@
 
 import logging
 
-from django.contrib.formtools.wizard import FormWizard
 from django.http import HttpResponseRedirect
 from django.views import generic
 from django.contrib import messages
@@ -62,18 +61,3 @@ class DetailView(generic.TemplateView):
                           'type': 'cute',
                           'url': 'http://www.liewcf.com/cute-mini-dog-1009/'}
         return context
-
-
-class ContactWizard(FormWizard):
-    def get_form(self, step):
-        form = super(ContactWizard, self).get_form(step)
-        form.initial = {'subject': 'hola'}
-        return form
-
-    def get_template(self, step):
-        # use "step" if you want to use specific templates for certain steps
-        return 'animals/cats/wizard.html'
-
-    def done(self, request, form_list):
-        # form list is a list of form objects.
-        return HttpResponseRedirect('/cats')

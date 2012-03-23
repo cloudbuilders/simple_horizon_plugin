@@ -17,8 +17,8 @@
 from django.conf.urls.defaults import patterns, url
 
 from .forms import ContactForm1, ContactForm2
+from .forms import ContactWizard
 from .views import IndexView, DetailView
-from .views import ContactWizard
 
 
 CATS = r'^cats/(?P<cat_id>[^/]+)/%s$'
