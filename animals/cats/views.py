@@ -65,6 +65,11 @@ class DetailView(generic.TemplateView):
 
 
 class ContactWizard(FormWizard):
+    def get_form(self, step):
+        form = super(ContactWizard, self).get_form(step)
+        form.initial = {'subject': 'hola'}
+        return form
+
     def get_template(self, step):
         # use "step" if you want to use specific templates for certain steps
         return 'animals/cats/wizard.html'
